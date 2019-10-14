@@ -1,0 +1,114 @@
+html {
+	min-height: 100%;
+	position: relative;
+}
+body {
+	background: url(../images/star-wars5-movie-screencaps.com-13195.jpg) no-repeat center center fixed;
+	background-size: cover;
+	font-family: 'Bowlby One', cursive;
+	color: #bbab16;
+	margin-bottom: 8.5em;
+}
+
+.container {
+	min-height: 100%;
+}
+
+#header, #game, #active {
+	padding-top: 2em;
+}
+
+h1, h3, button {
+	text-align: center;
+}
+
+
+.charpic {
+	height: 100px;
+	width: 100%;
+	overflow-y: hidden;
+}
+
+.thumbnail img {
+	width: 100%;
+}
+
+.thumbnail .caption {
+	font-size: 75%;
+	text-align: center;
+	padding: 0.25em;
+	margin-bottom: 0px;
+}
+
+.thumbnail {
+	border: 0.2em solid #7D9403;
+}
+
+.thumbnail:hover {
+    filter: drop-shadow(0.2em 0.2em 0em #bbab16);
+}
+
+
+.btn, .btn-primary, .btn-primary:active, .btn-primary:focus, .btn-primary:visited {
+	color: #bbab16;
+	background-color: rgba(112, 101, 0, 0.8);
+	border-color: #bbab16;
+}
+
+.btn-primary:hover {
+	color: #bbab16;
+	background-color: rgba(112, 101, 0, 1.0);
+	border-color: #bbab16;
+	
+}
+
+#reset, #fight, #battle {
+	display: none;
+}
+
+#alerts {
+	font-family: "Basic", sans-serif;
+	font-size: 100%;
+	color: #F4E560;
+	text-align: center;
+	min-height: 100%;
+
+}
+
+.footer {
+	position: absolute;
+	bottom: 0px;
+	font-size: 75%;
+	margin-top: 0.5em;
+	padding-top: 0.5em;
+	width: 100%;
+	/* Set the fixed height of the footer here */
+
+	color: #bbab16;
+	background-color: rgba(112, 101, 0, 0.5);
+	border-top-style: solid;
+	border-top-color: #bbab16;
+	border-top-width: .325em;
+}
+
+.footer .small {
+	font-size: 75%;
+}
+
+.footer a:link {
+    text-decoration: none;
+    color: #bbab16;
+}
+
+#gh-link {
+	font-size: 1.5em;
+}
+
+.footer a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+.footer a:hover {
+    filter: drop-shadow(0.063em 0.063em 0em #bbab16);
+}
