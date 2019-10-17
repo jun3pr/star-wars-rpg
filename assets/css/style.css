@@ -118,21 +118,5 @@ body {
 	text-align: center;
   }
   
-  /*   Media Queries     */
-  /*---------------------*/
-  @media only screen and (max-device-width: 768px) {
-	.character {
-	  display: block;
-	height: 150px;    
-	}
-	#gameMessage {
-	font-size: 12px;
-	}
-	#defender {
-	height: 150px;
-	}
-
-
-	}
-  }
+  
 	
