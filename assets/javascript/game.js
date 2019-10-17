@@ -1,13 +1,7 @@
-//Global variable
+//Global variables
 $(document).ready(function() {
 
-    //audio clips
-    let audio = new Audio('assets/audio/imperial_march.mp3');
-    let force = new Audio('assets/audio/force.mp3');
-    let blaster = new Audio('assets/audio/blaster-firing.mp3');
-    let jediKnow = new Audio('assets/audio/jedi-know.mp3');
-    let lightsaber = new Audio('assets/audio/light-saber-on.mp3');
-    let rtwoo = new Audio('assets/audio/R2D2.mp3');
+   
     
     //Array of Playable Characters
     let characters = {
@@ -58,7 +52,7 @@ $(document).ready(function() {
         var charHealth = $("<div class='character-health'>").text(character.health);
         charDiv.append(charName).append(charImage).append(charHealth);
         $(renderArea).append(charDiv);
-       
+     
         if (makeChar == 'enemy') {
           $(charDiv).addClass('enemy');
         } else if (makeChar == 'defender') {
@@ -67,7 +61,7 @@ $(document).ready(function() {
         }
       };
     
-      
+      // Create function to render game message to DOM
       var renderMessage = function(message) {
         var gameMesageSet = $("#gameMessage");
         var newMessage = $("<div>").text(message);
@@ -79,7 +73,7 @@ $(document).ready(function() {
       };
     
       var renderCharacters = function(charObj, areaRender) {
-       
+        //render all characters
         if (areaRender == '#characters-section') {
           $(areaRender).empty();
           for (var key in charObj) {
@@ -88,7 +82,7 @@ $(document).ready(function() {
             }
           }
         }
-        
+       
         if (areaRender == '#selected-character') {
           $('#selected-character').prepend("Your Character");       
           renderOne(charObj, areaRender, '');
@@ -101,11 +95,11 @@ $(document).ready(function() {
     
             renderOne(charObj[i], areaRender, 'enemy');
           }
-         
+          
           $(document).on('click', '.enemy', function() {
             
             name = ($(this).data('name'));
-            
+           
             if ($('#defender').children().length === 0) {
               renderCharacters(name, '#defender');
               $(this).hide();
@@ -113,38 +107,38 @@ $(document).ready(function() {
             }
           });
         }
-        
+        //render defender
         if (areaRender == '#defender') {
           $(areaRender).empty();
           for (var i = 0; i < combatants.length; i++) {
-            //add enemy to defender area
+            
             if (combatants[i].name == charObj) {
               $('#defender').append("Your selected opponent")
               renderOne(combatants[i], areaRender, 'defender');
             }
           }
         }
-       
+        
         if (areaRender == 'playerDamage') {
           $('#defender').empty();
           $('#defender').append("Your selected opponent")
           renderOne(charObj, '#defender', 'defender');
-          lightsaber.play();
+          
         }
         
         if (areaRender == 'enemyDamage') {
           $('#selected-character').empty();
           renderOne(charObj, '#selected-character', '');
         }
-       
+        
         if (areaRender == 'enemyDefeated') {
           $('#defender').empty();
           var gameStateMessage = "You have defated " + charObj.name + ", you can choose to fight another enemy.";
           renderMessage(gameStateMessage);
-          blaster.play();
+         
         }
       };
-      
+      //this is to render all characters for user to choose their computer
       renderCharacters(characters, '#characters-section');
       $(document).on('click', '.character', function() {
         name = $(this).data('name');
@@ -158,7 +152,7 @@ $(document).ready(function() {
           }
           $("#characters-section").hide();
           renderCharacters(currSelectedCharacter, '#selected-character');
-          
+          //this is to render all characters for user to choose fight against
           renderCharacters(combatants, '#available-to-attack-section');
         }
       });
@@ -166,12 +160,12 @@ $(document).ready(function() {
       // ----------------------------------------------------------------
       // Create functions to enable actions between objects.
       $("#attack-button").on("click", function() {
-        
+       
         if ($('#defender').children().length !== 0) {
-          
+         
           var attackMessage = "You attacked " + currDefender.name + " for " + (currSelectedCharacter.attack * turnCounter) + " damage.";
           renderMessage("clearMessage");
-          
+         
           currDefender.health = currDefender.health - (currSelectedCharacter.attack * turnCounter);
     
           
@@ -188,7 +182,7 @@ $(document).ready(function() {
             if (currSelectedCharacter.health <= 0) {
               renderMessage("clearMessage");
               restartGame("You have been defeated...GAME OVER!!!");
-              force.play();
+              
               $("#attack-button").unbind("click");
             }
           } else {
@@ -197,7 +191,7 @@ $(document).ready(function() {
             if (killCount >= 3) {
               renderMessage("clearMessage");
               restartGame("You Won!!!! GAME OVER!!!");
-              jediKnow.play();
+              
               
               setTimeout(function() {
               audio.play();
@@ -209,13 +203,13 @@ $(document).ready(function() {
         } else {
           renderMessage("clearMessage");
           renderMessage("No enemy here.");
-          rtwoo.play();
+          
         }
       });
     
-    
+    //Restarts the game - renders a reset button
       var restartGame = function(inputEndGame) {
-        
+        //When 'Restart' button is clicked, reload the page.
         var restart = $('<button class="btn">Restart</button>').click(function() {
           location.reload();
         });
