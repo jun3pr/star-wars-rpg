@@ -35,21 +35,21 @@ $(document).ready(function() {
         }
     };
     
-    var currSelectedCharacter;
-    var currDefender;
-    var combatants = [];
-    var indexofSelChar;
-    var attackResult;
-    var turnCounter = 1;
-    var killCount = 0;
+    let currSelectedCharacter;
+    let currDefender;
+    let combatants = [];
+    let indexofSelChar;
+    let attackResult;
+    let turnCounter = 1;
+    let killCount = 0;
     
     
-    var renderOne = function(character, renderArea, makeChar) {
+    let renderOne = function(character, renderArea, makeChar) {
         
-        var charDiv = $("<div class='character' data-name='" + character.name + "'>");
-        var charName = $("<div class='character-name'>").text(character.name);
-        var charImage = $("<img alt='image' class='character-image'>").attr("src", character.imageUrl);
-        var charHealth = $("<div class='character-health'>").text(character.health);
+        let charDiv = $("<div class='character' data-name='" + character.name + "'>");
+        let charName = $("<div class='character-name'>").text(character.name);
+        let charImage = $("<img alt='image' class='character-image'>").attr("src", character.imageUrl);
+        let charHealth = $("<div class='character-health'>").text(character.health);
         charDiv.append(charName).append(charImage).append(charHealth);
         $(renderArea).append(charDiv);
      
@@ -62,9 +62,9 @@ $(document).ready(function() {
       };
     
       // Create function to render game message to DOM
-      var renderMessage = function(message) {
-        var gameMesageSet = $("#gameMessage");
-        var newMessage = $("<div>").text(message);
+      let renderMessage = function(message) {
+        let gameMesageSet = $("#gameMessage");
+        let newMessage = $("<div>").text(message);
         gameMesageSet.append(newMessage);
     
         if (message == 'clearMessage') {
@@ -72,11 +72,11 @@ $(document).ready(function() {
         }
       };
     
-      var renderCharacters = function(charObj, areaRender) {
+      let renderCharacters = function(charObj, areaRender) {
         //render all characters
         if (areaRender == '#characters-section') {
           $(areaRender).empty();
-          for (var key in charObj) {
+          for (let key in charObj) {
             if (charObj.hasOwnProperty(key)) {
               renderOne(charObj[key], areaRender, '');
             }
@@ -91,7 +91,7 @@ $(document).ready(function() {
         
         if (areaRender == '#available-to-attack-section') {
             $('#available-to-attack-section').prepend("Choose Your Next Opponent");      
-          for (var i = 0; i < charObj.length; i++) {
+          for (let i = 0; i < charObj.length; i++) {
     
             renderOne(charObj[i], areaRender, 'enemy');
           }
@@ -110,7 +110,7 @@ $(document).ready(function() {
         //render defender
         if (areaRender == '#defender') {
           $(areaRender).empty();
-          for (var i = 0; i < combatants.length; i++) {
+          for (let i = 0; i < combatants.length; i++) {
             
             if (combatants[i].name == charObj) {
               $('#defender').append("Your selected opponent")
@@ -133,7 +133,7 @@ $(document).ready(function() {
         
         if (areaRender == 'enemyDefeated') {
           $('#defender').empty();
-          var gameStateMessage = "You have defated " + charObj.name + ", you can choose to fight another enemy.";
+          let gameStateMessage = "You have defated " + charObj.name + ", you can choose to fight another enemy.";
           renderMessage(gameStateMessage);
          
         }
@@ -145,7 +145,7 @@ $(document).ready(function() {
         
         if (!currSelectedCharacter) {
           currSelectedCharacter = characters[name];
-          for (var key in characters) {
+          for (let key in characters) {
             if (key != name) {
               combatants.push(characters[key]);
             }
@@ -163,7 +163,7 @@ $(document).ready(function() {
        
         if ($('#defender').children().length !== 0) {
          
-          var attackMessage = "You attacked " + currDefender.name + " for " + (currSelectedCharacter.attack * turnCounter) + " damage.";
+          let attackMessage = "You attacked " + currDefender.name + " for " + (currSelectedCharacter.attack * turnCounter) + " damage.";
           renderMessage("clearMessage");
          
           currDefender.health = currDefender.health - (currSelectedCharacter.attack * turnCounter);
@@ -173,7 +173,7 @@ $(document).ready(function() {
             
             renderCharacters(currDefender, 'playerDamage');
             
-            var counterAttackMessage = currDefender.name + " attacked you back for " + currDefender.enemyAttackBack + " damage.";
+            let counterAttackMessage = currDefender.name + " attacked you back for " + currDefender.enemyAttackBack + " damage.";
             renderMessage(attackMessage);
             renderMessage(counterAttackMessage);
     
@@ -208,12 +208,12 @@ $(document).ready(function() {
       });
     
     //Restarts the game - renders a reset button
-      var restartGame = function(inputEndGame) {
+      let restartGame = function(inputEndGame) {
         //When 'Restart' button is clicked, reload the page.
-        var restart = $('<button class="btn">Restart</button>').click(function() {
+        let restart = $('<button class="btn">Restart</button>').click(function() {
           location.reload();
         });
-        var gameState = $("<div>").text(inputEndGame);
+        let gameState = $("<div>").text(inputEndGame);
         $("#gameMessage").append(gameState);
         $("#gameMessage").append(restart);
       };
